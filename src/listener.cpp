@@ -9,7 +9,7 @@ void mapcallback(const nav_msgs::OccupancyGrid::ConstPtr& msg)
  std_msgs::Header header  = msg->header;
  nav_msgs::MapMetaData info = msg->info;
  ROS_INFO("got map %d %d",info.width,info.height);
-
+ ROS_INFO("%d",info.origin.position.x);
 }
 
 int main(int argc, char **argv)
