@@ -2,6 +2,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(listener)
 
+add_compile_options(-std=c++11)
 ## Find catkin and any catkin packages
 find_package(catkin REQUIRED COMPONENTS roscpp nav_msgs std_msgs genmsg)
 
