@@ -9,6 +9,13 @@
 using namespace std_msgs;
 using namespace std;
 using namespace nav_msgs;
+#define ll long long int 
+float a =0;
+float b_x = 0;
+float b_y = 0;
+float res = 0.05;
+float c_x=0;
+float c_y = 0;
 void mapcallback(const nav_msgs::OccupancyGrid::ConstPtr& msg)
 {
 vector<int> mytest;
@@ -27,6 +34,8 @@ data_sizes.pb(mytest.size());
 //cout<<"my map data should be of"<<info.width<<info.height<<"\n";//this is printing 60 and 60 
 cout<<"---------------------------------Printing position------------------------------"<<"\n";
 cout<<"i am here"<<info.origin.position.x<<" "<<info.origin.position.y;
+c_x = info.origin.position.x;
+c_y = info.origin.position.y;
 cout<<"-------------------------------All map data sizes-------------------------------"<<"\n";
 for(auto it : data_sizes)
 cout<<(int)it<<"\n";
@@ -46,12 +55,29 @@ void velCallBack(const nav_msgs::Odometry& msg){
     
 }
 
+void gpsCallBack(const nav_msgs::Odometry& msg){
+    
+    ROS_INFO(" ");
+    cout<<"--------------------------------------Printing position-------------------------"<<"\n";
+    //for doing this subscribe to the sensor fusion data /odom/filetered or /imu/data 
+    //use this topic /cmd_vel_mux/input/navi to move the robot
+    //subcribe to /odom for linear vel
+    cout<<(float)msg.pose.pose.position.x<<"x->position"<<"\n";
+    b_x= (float)msg.pose.pose.position.x;
+    b_y = (float)msg.pose.pose.position.y;
+    cout<<(float)msg.pose.pose.position.y<<"y->position"<<"\n";
+    cout<<(float)msg.pose.pose.position.z<<"z->position"<<"\n";     
+    cout<<"grid position of rover"<<"x"<<":"<<(b_x-c_x)/res<<"y"<<(b_y-c_y)/res<<"\n";
+    
+}
+
 int main(int argc, char **argv)
 {
  ros::init(argc,argv,"listener");
  ros::NodeHandle n; 
  ros::Subscriber map_sub = n.subscribe("/move_base/local_costmap/costmap",1000,mapcallback);
- //ros::Subscriber vel_sub = n.subscribe("/odom", 1000, velCallBack);//comment out to do actual node programming
+ ros::Subscriber vel_sub = n.subscribe("/odom", 1000, velCallBack);//comment out to do actual node programming
+ ros::Subscriber gps_sub = n.subscribe("/odom",1000,gpsCallBack);
   cout<<"vel_sub"<<"\n";
 ros::spin();
 return 0;
