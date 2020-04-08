@@ -9,10 +9,11 @@
 using namespace std_msgs;
 using namespace std;
 using namespace nav_msgs;
-vector<int> mytest;
-vector<int> data_sizes;
 void mapcallback(const nav_msgs::OccupancyGrid::ConstPtr& msg)
 {
+vector<int> mytest;
+vector<int> data_sizes;
+
  std_msgs::Header header  = msg->header;
  nav_msgs::MapMetaData info = msg->info;
 // int8_t data[];
