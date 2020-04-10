@@ -35,6 +35,6 @@ rosrun listener listener 2
 3. In turtlebot3 res of the local costmap is 0.05
 
 4. to calculate real position of any object on the grid we have to use the formula:
-*real x = origin.position.x - (x_co-ordinate of grid) x resolution*
+*real x = origin.position.x + (x_co-ordinate of grid) x resolution*
 
 5. Local costmap will give probabilities of wheather a point is occupied of not in (0-100).
