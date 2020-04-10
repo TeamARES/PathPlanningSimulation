@@ -19,6 +19,10 @@ catkin_package()
 ## Build talker and listener
 include_directories(include ${catkin_INCLUDE_DIRS})
 
+add_executable(planner src/tbd.cpp)
+target_link_libraries(planner ${catkin_LIBRARIES})
+add_dependencies(planner listener_generate_messages_cpp)
+
 add_executable(listener2 src/listener.cpp)
 target_link_libraries(listener2 ${catkin_LIBRARIES})
 add_dependencies(listener2 listener_generate_messages_cpp)

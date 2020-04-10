@@ -1,4 +1,4 @@
-#include<stdc++/bits.h>
+#include<bits/stdc++.h>
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "std_msgs/Header.h"
@@ -19,7 +19,7 @@ double max_velx=3;//max vel in x direction
 double min_velx=-3;//min vel in x direction
 double max_vely=3;//max vel in y direction
 double min_vely=-3;//min vel in y direction
-bool depth_map_status=false;//variable for checking if the depth map is updated or not    
+bool depth_map_status=false;//variable for checking if the depth map is updated or not
 
 class coordinates
 {
@@ -69,7 +69,7 @@ void revise_obstacle_coordinates(vector<int>  &ox, vector<int>  &oy, nav_msgs::O
         }
     }
     return;
-} 
+}
 
 void path_planning(double x_in, double y_in,double vx,double vy,double gx, double  gy,double vgx,double vgy,vector<int> ox, vector<int> oy){
     /*
@@ -95,7 +95,7 @@ void path_planning(double x_in, double y_in,double vx,double vy,double gx, doubl
     cout<<"Now at"<<rx<<" "<<ry<<"\n";
 
     cout<<"My velocity in x direction is:"<<vx<<" "<<"and in y direction is:"<<vy<<"\n";
-    
+
 
     while (1)
     {
@@ -104,12 +104,12 @@ void path_planning(double x_in, double y_in,double vx,double vy,double gx, doubl
         ggkk = a_star_planning(rx,ry,vx,vy,gx, gy,vgx,vgy,ox, oy, ox.size(),reso,rr);
         rx = ggkk.x;
         ry = ggkk.y;
-       ROS_INFO(""); 
+       ROS_INFO("");
        cout<<"go to ::::::"<<" ";
        cout<<rx<<" "<<ry<<"\n";
 
        cout<<"You will reach with velcity in x:"<<ggkk.vx<<" "<<"and in y:"<<ggkk.vy<<endl;
-       
+
         if (rx==gx && ry==gy && ggkk.vx == vgx && ggkk.vy == vgy)
          {
 
@@ -127,15 +127,15 @@ void path_planning(double x_in, double y_in,double vx,double vy,double gx, doubl
             cin>>depth_map_status;
             while(!depth_map_status)
              cin>>depth_map_status;
-            
+
             i am just going to update the deptch map once here
             */
             nav_msgs::OccupancyGrid::ConstPtr occgrid_constptr = ros::topic::waitForMessage("/move_base/local_costmap/costmap");
-    
+
             revise_obstacle_coordinates(ox, oy, occgrid_constptr);
 
-            
-            
+
+
             /*printf("Enter 1 for location feedback\n");
             int feed_loc;
             cin >> feed_loc;
@@ -148,7 +148,7 @@ void path_planning(double x_in, double y_in,double vx,double vy,double gx, doubl
       }
     ROS_INFO("");
     printf("Yeah! We reached the target");
-    
+
 
 }
 
@@ -268,10 +268,10 @@ return coordinates(finalx, finaly,finalvx,finalvy);
 
 int main(){
     ros::init(argc,argv,"listener");
-    ros::NodeHandle n; 
+    ros::NodeHandle n;
 
     vector<int> ox;
-    vector<int> oy;    
+    vector<int> oy;
     ROS_INFO("");
     printf("Lets start working\n");
     printf("Entering starting position coordinates");
@@ -292,11 +292,11 @@ int main(){
     double vy=0;
     double vgx=0;
     double vgy=0;
-    
+
     depth_map_status=true;
     //input the depth_map
     nav_msgs::OccupancyGrid::ConstPtr occgrid_constptr = ros::topic::waitForMessage("/move_base/local_costmap/costmap");
-    
+
     revise_obstacle_coordinates(ox, oy, occgrid_constptr);
     path_planning(x_in, y_in,vx,vy,gx,gy,vgx,vgy,ox,oy);
 
