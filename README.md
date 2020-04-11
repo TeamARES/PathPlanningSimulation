@@ -38,3 +38,17 @@ rosrun listener listener 2
 *real x = origin.position.x + (x_co-ordinate of grid) x resolution*
 
 5. Local costmap will give probabilities of wheather a point is occupied of not in (0-100).
+
+##Adding Utah_plane model to gazebo
+1. copy the utah_plane to .gazebo/models
+```
+cp -r utah_plane/ ~/.gazebo/models/
+```
+2. Open gazebo and insert model `Utah Plane`
+```
+gazebo
+```
+
+the output should look like:
+![sample output](/images/sample.png)
+
