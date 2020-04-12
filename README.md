@@ -39,7 +39,7 @@ rosrun listener listener 2
 
 5. Local costmap will give probabilities of wheather a point is occupied of not in (0-100).
 
-##Adding Utah_plane model to gazebo
+## Adding Utah_plane model to gazebo
 1. copy the utah_plane to .gazebo/models
 ```
 cp -r utah_plane/ ~/.gazebo/models/
@@ -51,4 +51,3 @@ gazebo
 
 the output should look like:
 ![sample output](/images/sample.png)
-
