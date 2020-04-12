@@ -14,7 +14,7 @@ roslaunch turtlebot3_navigation turtlebot3_navigation.launch
 ```
 3. Then launch gmapping package in turtlebot:
 ```
-roslanch turtlebot3_slam turtlebot3_gmapping.launch
+roslaunch turtlebot3_slam turtlebot3_gmapping.launch
 ```
 4. Open another terminal:
 ````
