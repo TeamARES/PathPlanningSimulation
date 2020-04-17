@@ -21,14 +21,14 @@ roslaunch turtlebot3_slam turtlebot3_gmapping.launch
 ```
 
 4. Open another terminal:
-````
+````bash
 cd catkin_ws/src
 git clone https://github.com/TeamARES/PathPlanningSimulation
 cd ..
 catkin_make
 ````
 5. To finally run the listener node that records all the useful data from turtlebot
-```
+```bash
 rosrun listener listener 2
 ```
 ## Important Conclusions:
