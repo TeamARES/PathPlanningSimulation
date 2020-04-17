@@ -3,7 +3,7 @@
 
 ## Process:
 1. First we have to launch turtlebot3 on gazebo :
-```
+```bash
 roslaunch turtlebot3_gazebo turtlebot3_world.launch
 
 ```
@@ -13,9 +13,13 @@ roslaunch turtlebot3_navigation turtlebot3_navigation.launch
 
 ```
 3. Then launch gmapping package in turtlebot:
-```
+
+
+```bash
 roslaunch turtlebot3_slam turtlebot3_gmapping.launch
+
 ```
+
 4. Open another terminal:
 ````
 cd catkin_ws/src
